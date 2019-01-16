@@ -46,10 +46,12 @@ module.exports = {
     // data can be an ArrayBuffer, string, integer array, or Uint8Array
     write: function (data, success, failure) {
 
-        // convert to ArrayBuffer
         if (typeof data === 'string') {
-            data = stringToArrayBuffer(data);
-        } else if (data instanceof Array) {
+            cordova.exec(success, failure, "BluetoothSerial", "writeString", [data]);
+            return;
+        }
+
+        if (data instanceof Array) {
             // assuming array of interger
             data = new Uint8Array(data).buffer;
         } else if (data instanceof Uint8Array) {
