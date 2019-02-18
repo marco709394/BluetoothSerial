@@ -10,8 +10,8 @@ module.exports = {
         cordova.exec(success, failure, "BluetoothSerial", "connectInsecure", [macAddress]);
     },
 
-    disconnect: function (success, failure) {
-        cordova.exec(success, failure, "BluetoothSerial", "disconnect", []);
+    disconnect: function (macAddress, success, failure) {
+        cordova.exec(success, failure, "BluetoothSerial", "disconnect", [macAddress]);
     },
 
     // list bound devices
