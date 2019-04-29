@@ -44,10 +44,10 @@ module.exports = {
 
     // writes data to the bluetooth serial port
     // data can be an ArrayBuffer, string, integer array, or Uint8Array
-    write: function (data, success, failure) {
+    write: function (data, macAddress, success, failure) {
 
         if (typeof data === 'string') {
-            cordova.exec(success, failure, "BluetoothSerial", "writeString", [data]);
+            cordova.exec(success, failure, "BluetoothSerial", "writeString", [data, macAddress]);
             return;
         }
 
@@ -58,7 +58,7 @@ module.exports = {
             data = data.buffer;
         }
 
-        cordova.exec(success, failure, "BluetoothSerial", "write", [data]);
+        cordova.exec(success, failure, "BluetoothSerial", "write", [data, macAddress]);
     },
 
     // calls the success callback when new data is available
